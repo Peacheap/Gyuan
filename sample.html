@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人介绍 - Gyuan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#3b82f6',
+                        dark: '#333333',
+                        light: '#f5f5f5'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            @apply bg-white text-gray-800;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .header-line {
+            height: 1px;
+            @apply bg-gray-200;
+            background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.1) 30%, rgba(0, 0, 0, 0.1) 70%, transparent 100%);
+        }
+
+        .nav-btn {
+            @apply p-2 rounded-full hover: bg-brand/10 transition-all hover:text-brand;
+        }
+
+        .nav-text-btn {
+            @apply px-4 py-1.5 rounded-lg hover: bg-brand/5 transition-all hover:text-brand;
+        }
+
+        .section-card {
+            @apply bg-white rounded-xl shadow-sm p-6 transition-all hover: shadow-md border border-gray-100;
+        }
+
+        .skill-bar {
+            @apply bg-gray-200 rounded-full h-2;
+        }
+
+        .skill-fill {
+            @apply bg-brand h-full rounded-full;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 标题栏 -->
+    <header class="fixed top-0 left-0 right-0 bg-dark z-50">
+        <div class="max-w-7xl mx-auto px-8 py-6 flex items-center">
+            <!-- 左侧导航 -->
+            <div class="flex items-center gap-8">
+                <button class="nav-btn">
+                    <iconify-icon icon="ic:round-menu" class="text-white text-2xl"></iconify-icon>
+                </button>
+
+                <div class="flex gap-2">
+                    <button class="nav-text-btn text-white">关于</button>
+                    <button class="nav-text-btn text-white">技能</button>
+                    <button class="nav-text-btn text-white">项目</button>
+                </div>
+            </div>
+
+            <!-- 网站名 -->
+            <div class="flex-grow text-center">
+                <h1 class="text-white text-3xl font-bold">Gyuan</h1>
+            </div>
+
+            <!-- 右侧联系方式 -->
+            <div class="flex gap-2">
+                <a href="#" class="nav-btn text-white" title="微信">
+                    <iconify-icon icon="mdi:wechat" class="text-xl"></iconify-icon>
+                </a>
+                <a href="#" class="nav-btn text-white" title="LinkedIn">
+                    <iconify-icon icon="mdi:linkedin" class="text-xl"></iconify-icon>
+                </a>
+                <a href="#" class="nav-btn text-white" title="GitHub">
+                    <iconify-icon icon="mdi:github" class="text-xl"></iconify-icon>
+                </a>
+                <a href="#" class="nav-btn text-white" title="Instagram">
+                    <iconify-icon icon="mdi:instagram" class="text-xl"></iconify-icon>
+                </a>
+                <a href="#" class="nav-btn text-white" title="邮箱">
+                    <iconify-icon icon="mdi:email" class="text-xl"></iconify-icon>
+                </a>
+            </div>
+        </div>
+        <div class="header-line w-full"></div>
+    </header>
+
+    <!-- 内容区 -->
+    <main class="max-w-7xl mx-auto px-8 pt-32 pb-20">
+        <!-- 个人简介 -->
+        <section class="mb-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="md:col-span-2">
+                <h2 class="text-4xl font-bold mb-4">你好，我是王大明</h2>
+                <h3 class="text-2xl text-gray-500 mb-6">高级前端开发工程师</h3>
+
+                <div class="space-y-4 mb-8">
+                    <p>拥有6年前端开发经验，专注于创建高性能、用户友好的Web应用。精通现代JavaScript框架和响应式设计。</p>
+                    <p>曾主导多个大型电商平台的前端架构设计与实现，对用户体验优化有深入研究。目前在创新科技有限公司担任前端技术主管。</p>
+                    <p>热爱探索新技术，在技术社区贡献开源项目，并定期撰写技术博客分享开发经验与方法。</p>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <button
+                        class="px-6 py-2 bg-brand text-white rounded-lg hover:bg-opacity-90 transition-all font-medium">
+                        联系我
+                    </button>
+                    <button
+                        class="px-6 py-2 bg-white border border-brand text-brand rounded-lg hover:bg-brand/5 transition-all font-medium">
+                        下载简历
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex justify-center">
+                <div class="rounded-full overflow-hidden border-4 border-white shadow-lg"
+                    style="width: 280px; height: 280px;">
+                    <img id="1" src="https://modao.cc/ai/uploads/ai_pics/29/295419/aigp_1758529210.jpeg"
+                        alt="Profile photo of Wang Daming" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- 技能展示 -->
+        <section class="mb-20">
+            <div class="flex items-center gap-4 mb-10">
+                <h2 class="text-3xl font-bold">专业技能</h2>
+                <div class="header-line flex-grow"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 开发技能 -->
+                <div class="section-card">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
+                        <iconify-icon icon="mingcute:code-line" class="text-brand"></iconify-icon>
+                        开发技能
+                    </h3>
+
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <div>JavaScript/TypeScript</div>
+                                <div>95%</div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 95%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <div>React/Vue</div>
+                                <div>90%</div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <div>Next.js/Nuxt.js</div>
+                                <div>85%</div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <div>Node.js</div>
+                                <div>80%</div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 设计技能 -->
+                <div class="section-card">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
+                        <iconify-icon icon="ph:paint-brush" class="text-brand"></iconify-icon>
+                        UI/UX 能力
+                    </h3>
+
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <div>响应式设计</div>
+                                <div>92%</div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 92%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <div>Figma/Sketch</div>
+                                <div>88%</div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 88%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <div>UI 组件库</div>
+                                <div>95%</div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 95%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <div>用户体验优化</div>
+                                <div>90%</div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 项目经验 -->
+        <section class="mb-20">
+            <div class="flex items-center gap-4 mb-10">
+                <h2 class="text-3xl font-bold">项目经验</h2>
+                <div class="header-line flex-grow"></div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6">
+                <!-- 项目1 -->
+                <div class="section-card">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="md:w-1/4">
+                            <div
+                                class="bg-gray-100 aspect-video rounded-lg overflow-hidden flex items-center justify-center">
+                                <img id="2" src="https://modao.cc/ai/uploads/ai_pics/29/295420/aigp_1758529212.jpeg"
+                                    alt="E-commerce platform interface design" class="w-full object-contain">
+                            </div>
+                        </div>
+
+                        <div class="md:w-3/4">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-2xl font-bold">电商平台重构项目</h3>
+                                <span class="text-sm bg-brand/10 text-brand font-medium px-3 py-1 rounded-full">
+                                    2023年
+                                </span>
+                            </div>
+
+                            <p class="text-gray-500 mb-4">作为技术负责人主导平台重构，使用Vue3实现全组件化架构</p>
+
+                            <ul class="space-y-2 mb-4">
+                                <li class="flex items-start">
+                                    <iconify-icon icon="ic:round-check" class="text-brand mt-1 mr-2 text-xl">
+                                    </iconify-icon>
+                                    <span>实现页面加载速度提升70%，用户转化率提高25%</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <iconify-icon icon="ic:round-check" class="text-brand mt-1 mr-2 text-xl">
+                                    </iconify-icon>
+                                    <span>设计可复用组件库，提高团队开发效率40%</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <iconify-icon icon="ic:round-check" class="text-brand mt-1 mr-2 text-xl">
+                                    </iconify-icon>
+                                    <span>实现核心业务功能自动化测试覆盖率达到90%</span>
+                                </li>
+                            </ul>
+
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-50 text-brand rounded-full text-sm">Vue 3</span>
+                                <span class="px-3 py-1 bg-blue-50 text-brand rounded-full text-sm">TypeScript</span>
+                                <span class="px-3 py-1 bg-blue-50 text-brand rounded-full text-sm">微前端</span>
+                                <span class="px-3 py-1 bg-blue-50 text-brand rounded-full text-sm">性能优化</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 项目2 -->
+                <div class="section-card">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="md:w-1/4">
+                            <div
+                                class="bg-gray-100 aspect-video rounded-lg overflow-hidden flex items-center justify-center">
+                                <img id="3" src="https://modao.cc/ai/uploads/ai_pics/29/295421/aigp_1758529215.jpeg"
+                                    alt="Mobile application analytics dashboard screenshot"
+                                    class="w-full object-contain">
+                            </div>
+                        </div>
+
+                        <div class="md:w-3/4">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-2xl font-bold">移动应用数据分析平台</h3>
+                                <span class="text-sm bg-brand/10 text-brand font-medium px-3 py-1 rounded-full">
+                                    2022年
+                                </span>
+                            </div>
+
+                            <p class="text-gray-500 mb-4">担任前端架构师，构建数据可视化分析系统，支持千万级数据实时呈现</p>
+
+                            <ul class="space-y-2 mb-4">
+                                <li class="flex items-start">
+                                    <iconify-icon icon="ic:round-check" class="text-brand mt-1 mr-2 text-xl">
+                                    </iconify-icon>
+                                    <span>使用D3.js和ECharts实现复杂数据可视化方案</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <iconify-icon icon="ic:round-check" class="text-brand mt-1 mr-2 text-xl">
+                                    </iconify-icon>
+                                    <span>开发自定义图表组件库，支持业务灵活配置</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <iconify-icon icon="ic:round-check" class="text-brand mt-1 mr-2 text-xl">
+                                    </iconify-icon>
+                                    <span>实现多维度数据分析面板，支持30+关键业务指标</span>
+                                </li>
+                            </ul>
+
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-50 text-brand rounded-full text-sm">React</span>
+                                <span class="px-3 py-1 bg-blue-50 text-brand rounded-full text-sm">ECharts</span>
+                                <span class="px-3 py-1 bg-blue-50 text-brand rounded-full text-sm">数据可视化</span>
+                                <span class="px-3 py-1 bg-blue-50 text-brand rounded-full text-sm">WebSocket</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>

@@ -1,30 +1,29 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue'
+import SiteHeader from './components/SiteHeader.vue'
+import Home from './views/Home.vue'
+import Test from './views/Test.vue'
+
+const currentView = ref('home')
+
+function showTest() {
+  currentView.value = 'test'
+}
+
+function goHome() {
+  currentView.value = 'home'
+}
 </script>
 
 <template>
   <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+    <SiteHeader @show-test="showTest" @go-home="goHome" />
+    <div style="padding-top:88px;">
+      <Home v-if="currentView === 'home'" />
+      <Test v-else />
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>

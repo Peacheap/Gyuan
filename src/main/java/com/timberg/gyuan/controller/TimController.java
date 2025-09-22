@@ -1,6 +1,7 @@
 package com.timberg.gyuan.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,10 +44,14 @@ public class TimController {
 
     @Operation(summary = "查询Tim信息", description = "根据ID查询对应的Tim信息")
     @GetMapping("/findById/{id}")
-    public TimResp findById(
+    public ResponseEntity<?> findById(
             @Parameter(description = "Tim信息ID", example = "1") 
             @PathVariable Integer id) {
-        return timService.findByIdAsResp(id);
+        TimResp resp = timService.findByIdAsResp(id);
+        if (resp == null) {
+            return ResponseEntity.status(404).body("未查询到此条数据");
+        }
+        return ResponseEntity.ok(resp);
     }
 
     @Operation(summary = "更新Tim信息", description = "更新指定ID的Tim信息")
