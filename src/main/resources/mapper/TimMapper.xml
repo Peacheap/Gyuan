@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timberg.gyuan.mapper.TimMapper">
+
+    <resultMap id="TimResultMap" type="com.timberg.gyuan.model.Tim">
+        <id     property="id"       column="id" />
+        <result property="ip"       column="ip" />
+        <result property="province" column="province" />
+        <result property="time"     column="time" />
+        <result property="str"      column="str" />
+        <result property="likes"    column="likes" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, ip, province, time, str, likes
+    </sql>
+
+    <insert id="insert" parameterType="com.timberg.gyuan.dto.TimCreateReq">
+        INSERT INTO tim (ip, province, time, str, likes)
+        VALUES (#{ip}, #{province}, #{time}, #{str}, #{likes})
+    </insert>
+
+    <select id="findById" parameterType="int" resultMap="TimResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM tim
+        WHERE id = #{id}
+    </select>
+
+    <update id="update" parameterType="com.timberg.gyuan.model.Tim">
+        UPDATE tim
+        SET ip = #{tim.ip},
+            province = #{tim.province},
+            time = #{tim.time},
+            str = #{tim.str},
+            likes = #{tim.likes}
+        WHERE id = #{tim.id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM tim WHERE id = #{id}
+    </delete>
+
+</mapper>
