@@ -1,7 +1,7 @@
 import { reactive } from 'vue'
 
 const config = reactive({
-  baseURL: import.meta.env.VITE_API_BASE || 'http://localhost:8080',
+  baseURL: import.meta.env.VITE_API_BASE || 'http://localhost:18080',
 })
 
 export async function httpGet(path) {
