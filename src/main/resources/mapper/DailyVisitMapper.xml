@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timberg.gyuan.mapper.DailyVisitMapper">
+
+    <!-- 根据日期查询访问记录 -->
+    <select id="findByVisitDate" resultType="com.timberg.gyuan.model.DailyVisit">
+        SELECT id, visit_date, visit_count, last_update
+        FROM daily_visits
+        WHERE visit_date = #{visitDate}
+    </select>
+
+    <!-- 插入新的访问记录 -->
+    <insert id="insert" parameterType="com.timberg.gyuan.model.DailyVisit" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO daily_visits (visit_date, visit_count, last_update)
+        VALUES (#{visitDate}, #{visitCount}, #{lastUpdate})
+    </insert>
+
+    <!-- 更新访问量 -->
+    <update id="updateVisitCount">
+        UPDATE daily_visits
+        SET visit_count = #{visitCount},
+            last_update = CURRENT_TIMESTAMP
+        WHERE visit_date = #{visitDate}
+    </update>
+
+    <!-- 获取总访问量 -->
+    <select id="getTotalVisits" resultType="java.lang.Long">
+        SELECT COALESCE(SUM(visit_count), 0)
+        FROM daily_visits
+    </select>
+
+</mapper>

@@ -1,12 +1,11 @@
+/* 全局样式保留原本 */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -18,9 +17,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
-a:hover {
-  color: #535bf2;
-}
+a:hover { color: #535bf2; }
 
 body {
   margin: 0;
@@ -30,10 +27,7 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+h1 { font-size: 3.2em; line-height: 1.1; }
 
 button {
   border-radius: 8px;
@@ -45,18 +39,10 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  white-space: nowrap; /* keep button text on one line */
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-.card {
-  padding: 2em;
-}
+button:hover { border-color: #646cff; }
+button:focus, button:focus-visible { outline: 4px auto -webkit-focus-ring-color; }
 
 #app {
   max-width: 1280px;
@@ -66,14 +52,74 @@ button:focus-visible {
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  :root { color: #213547; background-color: #ffffff; }
+  a:hover { color: #747bff; }
+  button { background-color: #f9f9f9; }
 }
+
+/* ---------- Global input visibility on dark backgrounds ---------- */
+input, textarea {
+  color: #e5e5e5;
+  caret-color: #e5e5e5;
+  background: transparent;
+}
+input::placeholder, textarea::placeholder {
+  color: rgba(229,229,229,0.45);
+}
+
+/* Element Plus inputs on dark header/backgrounds */
+.el-input__wrapper {
+  background-color: transparent !important;
+}
+.el-input__inner {
+  color: #e5e5e5 !important;
+  -webkit-text-fill-color: #e5e5e5; /* Safari */
+  caret-color: #e5e5e5;
+}
+.el-textarea__inner {
+  color: #e5e5e5 !important;
+  background: transparent !important;
+  -webkit-text-fill-color: #e5e5e5;
+  caret-color: #e5e5e5;
+}
+
+
+/* Element Plus Drawer 全局定制：不遮挡标题栏 + 深黑背景 */
+.site-drawer-overlay {
+  top: 68px !important;
+  height: calc(100% - 68px) !important;
+}
+
+/* 遮罩 */
+.site-drawer-overlay .el-overlay-mask {
+  top: 68px !important;
+  height: calc(100% - 68px) !important;
+  background-color: rgba(0,0,0,0.7) !important;
+}
+
+/* 抽屉偏移仅作用于包裹层，避免内容层重复计算导致高度过低 */
+.site-drawer .el-drawer__wrapper {
+  top: 68px !important;
+  height: calc(100% - 68px) !important;
+}
+
+/* 保持抽屉整体与内容深黑背景，去掉内容层的高度与top限制 */
+.site-drawer,
+.site-drawer .el-drawer__content,
+.site-drawer .el-drawer__body {
+  background-color: #0a0a0a !important;
+  padding: 0 !important;
+}
+
+/* 内容定宽：以最宽按钮为准，但设置最大宽度上限 */
+.site-drawer .el-drawer, /* some builds mount this class on root */
+.site-drawer .el-drawer__container, /* compatibility */
+.site-drawer .el-drawer__body {
+  width: max-content !important;
+}
+
+/* 让内层内容不被拉伸，占据自身宽度 */
+.site-drawer .drawer-content {
+  width: max-content;
+}
+

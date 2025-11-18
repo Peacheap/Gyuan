@@ -1,19 +1,21 @@
 <template>
   <div style="padding:16px;">
-    <h2 style="margin-bottom:12px;">Home</h2>
-    <div style="display:flex; gap:8px; align-items:center; margin-bottom:12px;">
+    <h2 style="margin-bottom:12px;">有问必答</h2>
+  <div style="display:flex; gap:8px; align-items:center; margin-bottom:6px;">
       <input
         :value="idInput"
-        @input="onInputNumberOnly"
-        placeholder="输入ID（数字）"
+        @input="onInputFree"
+        placeholder="输入你想问的内容"
         style="padding:6px 8px; border:1px solid #ccc; border-radius:4px; width:200px;"
       />
-      <button @click="onSearch" :disabled="loading || !idInput" style="padding:6px 12px;">
-        {{ loading ? '查询中...' : '查询' }}
+      <button @click="onSearch" :disabled="loading || !idInput?.trim()" style="padding:6px 12px;">
+        {{ loading ? '思考中...' : '询问' }}
       </button>
     </div>
 
-    <div v-if="errorMsg" style="color:#c00; margin-bottom:12px;">{{ errorMsg }}</div>
+    <div v-if="errorMsg" style="color:#c00; margin-bottom:6px;">{{ errorMsg }}</div>
+
+    <div v-if="respText" style="font-weight:700; color:#e02424; margin-bottom:12px;">{{ respText }}</div>
     
 
     <table v-if="data" style="border-collapse:collapse; width:100%;">
@@ -44,17 +46,20 @@
 
 <script setup>
 import { ref } from 'vue'
-import { findTimById } from '../api/tim'
+import { getRandomResponse } from '../api/response'
 
 const idInput = ref('')
 const loading = ref(false)
 const errorMsg = ref('')
 const data = ref(null)
+const respText = ref('')
 
-function onInputNumberOnly(event) {
-  const value = event.target.value
-  const numeric = value.replace(/\D+/g, '')
-  idInput.value = numeric
+// function onInputNumberOnly(event) {
+//   const value = event.target.value
+//   const numeric = value.replace(/\D+/g, '')
+//   idInput.value = numeric
+function onInputFree(event) {
+  idInput.value = event.target.value
 }
 
 async function onSearch() {
@@ -62,8 +67,8 @@ async function onSearch() {
   data.value = null
   loading.value = true
   try {
-    const res = await findTimById(idInput.value)
-    data.value = res
+    const text = await getRandomResponse()
+    respText.value = text || ''
   } catch (err) {
     errorMsg.value = err?.message || '请求失败'
   } finally {

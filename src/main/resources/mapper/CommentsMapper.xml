@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timberg.gyuan.mapper.CommentsMapper">
+
+    <resultMap id="CommentMap" type="com.timberg.gyuan.model.Comment">
+        <id property="id" column="id" />
+        <result property="nickname" column="nickname" />
+        <result property="content" column="content" />
+        <result property="ipAddress" column="ip_address" />
+        <result property="email" column="email" />
+        <result property="parentId" column="parent_id" />
+        <result property="likes" column="likes" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updated_at" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.timberg.gyuan.model.Comment" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO comments (nickname, content, ip_address, email, parent_id, likes)
+        VALUES (#{nickname}, #{content}, #{ipAddress}, #{email}, #{parentId}, 0)
+    </insert>
+
+    <select id="listRoot" resultMap="CommentMap">
+        SELECT * FROM comments
+        WHERE parent_id IS NULL
+        ORDER BY created_at DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <select id="countRoot" resultType="int">
+        SELECT COUNT(1) FROM comments WHERE parent_id IS NULL
+    </select>
+
+    <select id="listByParent" resultMap="CommentMap">
+        SELECT * FROM comments
+        WHERE parent_id = #{parentId}
+        ORDER BY created_at ASC
+    </select>
+
+    <update id="like">
+        UPDATE comments SET likes = likes + 1 WHERE id = #{id}
+    </update>
+
+</mapper>
